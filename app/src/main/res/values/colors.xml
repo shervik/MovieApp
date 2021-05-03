@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorWhite">@android:color/white</color>
+    <color name="colorMidnight">#12153D</color>
+    <color name="colorMidnightLight">#4D12153D</color>
+    <color name="colorMidnightVeryLight">#2612153D</color>
+    <color name="colorBrinkPink">#FE6D8E</color>
+    <color name="colorMoonYellow">#FCC419</color>
+    <color name="colorCornFlowerBlue">#434670</color>
+    <color name="colorGreen">#51CF66</color>
+    <color name="colorWaterloo">#737599</color>
+    <color name="colorSantasGray">#9A9BB2</color>
+</resources>

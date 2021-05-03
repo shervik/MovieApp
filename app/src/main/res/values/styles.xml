@@ -1,0 +1,50 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorWhite</item>
+        <item name="colorOnPrimary">@color/colorMidnight</item>
+        <item name="colorSurface">@color/colorWhite</item>
+        <item name="colorOnSurface">@color/colorMidnight</item>
+        <item name="colorOnSecondary">@color/colorMidnightLight</item>
+        <item name="colorAccent">@color/colorBrinkPink</item>
+        <item name="colorControlNormal">@color/colorWhite</item>
+    </style>
+
+    <style name="Chip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipCornerRadius">50dp</item>
+        <item name="chipBackgroundColor">@android:color/transparent</item>
+        <item name="chipStrokeWidth">0.5dp</item>
+        <item name="chipStrokeColor">@color/colorMidnightLight</item>
+        <item name="android:textColor">@color/colorCornFlowerBlue</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="TextAppearance.Body" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:fontFamily">@font/proxima_nova_reg</item>
+        <item name="android:textColor">@color/colorWaterloo</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="TextAppearance.Small" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/proxima_nova_reg</item>
+        <item name="android:fontWeight">400</item>
+        <item name="android:textColor">@color/colorSantasGray</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="TextAppearance.Title1" parent="TextAppearance.AppCompat.Title">
+        <item name="android:fontFamily">@font/proxima_nova_semibold</item>
+        <item name="android:textColor">@color/colorMidnight</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="TextAppearance.Title2" parent="TextAppearance.AppCompat.Title">
+        <item name="android:fontFamily">@font/proxima_nova_medium</item>
+        <item name="android:textColor">@color/colorMidnight</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+</resources>

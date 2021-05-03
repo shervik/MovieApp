@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">MovieApp</string>
+
+    <string name="content_description_search">Search</string>
+    <string name="search">Search</string>
+
+    <string name="firmName">Ford v Ferrari</string>
+    <string name="textRate">5.0</string>
+
+    <string name="tabItemText1">В прокате</string>
+    <string name="tabItemText2">Топ фильмов</string>
+    <string name="tabItemText3">Скоро</string>
+
+    <string name="chipText1">Action</string>
+    <string name="chipText2">Comedy</string>
+    <string name="chipText3">Crime</string>
+    <string name="chipText4">Drama</string>
+
+    <string name="txtMetascope">Metascope</string>
+    <string name="txtRate">Оценить</string>
+
+    <string name="titleSummary">Описание сюжета</string>
+    <string name="textSummary">American car designer Carroll Shelby and driver Kn Miles battle corporate interference and the laws of physics to build a revolutionary race car for Ford in order.</string>
+    <string name="titleCast">Актеры &amp; Съемочная группа</string>
+
+    <string name="displayLengthFilm">%s ч %s мин</string>
+    <string name="displayRating">%.1f/10</string>
+</resources>
