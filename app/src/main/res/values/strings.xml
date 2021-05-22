@@ -7,9 +7,11 @@
     <string name="firmName">Ford v Ferrari</string>
     <string name="textRate">5.0</string>
 
-    <string name="tabItemText1">В прокате</string>
-    <string name="tabItemText2">Топ фильмов</string>
-    <string name="tabItemText3">Скоро</string>
+    <string-array name="tabs">
+        <item>В прокате</item>
+        <item>Топ фильмов</item>
+        <item>Скоро</item>
+    </string-array>
 
     <string name="chipText1">Action</string>
     <string name="chipText2">Comedy</string>
@@ -24,5 +26,6 @@
     <string name="titleCast">Актеры &amp; Съемочная группа</string>
 
     <string name="displayLengthFilm">%s ч %s мин</string>
-    <string name="displayRating">%.1f/10</string>
+    <string name="displayRating">%s/10</string>
+    <string name="displayAgeLimits">%s</string>
 </resources>

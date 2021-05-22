@@ -8,6 +8,7 @@ import com.gesvik.movieapp.network.entities.*
 import com.gesvik.movieapp.filmOverview.FilmsApiStatus
 import com.gesvik.movieapp.network.FilmApi
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class DetailFilmViewModel(filmsProperty: FilmsItem, app: Application) : AndroidViewModel(app) {
     private val _status = MutableLiveData<FilmsApiStatus>()
@@ -42,14 +43,27 @@ class DetailFilmViewModel(filmsProperty: FilmsItem, app: Application) : AndroidV
     }
 
     val displayPropertyFilmLength = Transformations.map(selectedProperty) {
-        app.applicationContext.getString(R.string.displayLengthFilm,
+        app.applicationContext.getString(
+            R.string.displayLengthFilm,
             it.mFilmLength!!.split(":")[0], it.mFilmLength!!.split(":")[1]
         )
     }
 
     val displayPropertyRating = Transformations.map(selectedProperty) {
-        app.applicationContext.getString(R.string.displayRating,
-            it.mRating!!.replace("%", "").toDouble().div(10)
+        app.applicationContext.getString(
+            R.string.displayRating,
+            it.mRating!!
+        )
+    }
+
+    val displayPropertyAgeLimits = Transformations.map(filmItemProperty) {
+        var string: String = it.data.ratingMpaa!!
+        if (!string.contains("-")) {
+            string += "-" + it.data.mRatingAgeLimits
+        }
+        app.applicationContext.getString(
+            R.string.displayAgeLimits,
+            string
         )
     }
 
@@ -58,10 +72,11 @@ class DetailFilmViewModel(filmsProperty: FilmsItem, app: Application) : AndroidV
             _status.value = FilmsApiStatus.LOADING
 
             try {
-                _filmProperty.value = FilmApi.retrofitService.getFilmItem(_selectedProperty.value!!.filmId)
+                _filmProperty.value =
+                    FilmApi.retrofitService.getFilmItem(_selectedProperty.value!!.filmId)
                 _status.value = FilmsApiStatus.DONE
 
-                Log.d("DetailFilmViewModel", "FILM PROPERTY VALUE DONE")
+                Timber.d("FILM PROPERTY VALUE DONE")
             } catch (e: Exception) {
                 e.printStackTrace()
                 _status.value = FilmsApiStatus.ERROR
@@ -74,10 +89,11 @@ class DetailFilmViewModel(filmsProperty: FilmsItem, app: Application) : AndroidV
             _status.value = FilmsApiStatus.LOADING
 
             try {
-                _staffProperty.value = FilmApi.retrofitService.getStaff(_selectedProperty.value!!.filmId)
+                _staffProperty.value =
+                    FilmApi.retrofitService.getStaff(_selectedProperty.value!!.filmId)
                 _status.value = FilmsApiStatus.DONE
 
-                Log.d("DetailFilmViewModel", "STAFF PROPERTY VALUE DONE")
+                Timber.d("STAFF PROPERTY VALUE DONE")
             } catch (e: Exception) {
                 e.printStackTrace()
                 _status.value = FilmsApiStatus.ERROR

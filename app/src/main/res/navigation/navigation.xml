@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/filmFragment">
+    app:startDestination="@id/tabsFragment">
 
     <fragment
-        android:id="@+id/filmFragment"
-        android:name="com.gesvik.movieapp.filmOverview.FilmFragment"
-        android:label="film_fragment"
-        tools:layout="@layout/film_fragment" >
+        android:id="@+id/tabsFragment"
+        android:name="com.gesvik.movieapp.filmTabs.TabsFragment"
+        android:label="tabs_fragment"
+        tools:layout="@layout/tabs_fragment">
         <action
             android:id="@+id/action_showDetail"
             app:destination="@id/detailFilmFragment" />
@@ -22,5 +22,11 @@
         <argument
             android:name="selectedProperty"
             app:argType="com.gesvik.movieapp.network.entities.FilmsItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/filmOverviewFragment"
+        android:name="com.gesvik.movieapp.filmOverview.FilmOverviewFragment"
+        android:label="FilmOverviewFragment"
+        tools:layout="@layout/film_overview_fragment">
     </fragment>
 </navigation>

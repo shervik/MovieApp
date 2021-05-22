@@ -10,19 +10,17 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.gesvik.movieapp.R
-import com.gesvik.movieapp.databinding.FilmFragmentBinding
+import com.gesvik.movieapp.databinding.FilmOverviewFragmentBinding
+import com.gesvik.movieapp.filmTabs.TabsFragmentDirections
 import com.gesvik.movieapp.network.entities.GenresResponse
 import com.google.android.material.chip.Chip
-import com.google.android.material.tabs.TabLayout
 import timber.log.Timber
 import kotlin.math.abs
 
-class FilmFragment(val category: String) : Fragment() {
-    private lateinit var binding: FilmFragmentBinding
+class FilmOverviewFragment(private val category: String?) : Fragment() {
+    private lateinit var binding: FilmOverviewFragmentBinding
 
     private lateinit var viewPager: ViewPager2
-    private lateinit var tabLayout: TabLayout
-    private lateinit var pagerAdapter: PagerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +28,7 @@ class FilmFragment(val category: String) : Fragment() {
     ): View {
         Timber.i("onCreateView")
 
-        binding = FilmFragmentBinding.inflate(inflater, container, false)
+        binding = FilmOverviewFragmentBinding.inflate(inflater, container, false)
 
         binding.lifecycleOwner = this
 
@@ -40,18 +38,17 @@ class FilmFragment(val category: String) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Timber.i("onViewCreated")
 
-
-        tabLayout = binding.tabs
         val categoryName = category
 
-        val viewModelFactory = ViewModelFactory(categoryName)
+        val viewModelFactory = ViewModelFactory(categoryName!!)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(FilmsViewModel::class.java)
         binding.viewModel = viewModel
 
         viewPager = binding.viewPager
-        viewPager.adapter = FilmSliderAdapter(FilmSliderAdapter.OnClickListener {
+        val filmSliderAdapter = FilmSliderAdapter(FilmSliderAdapter.OnClickListener {
             viewModel.displayPropertyDetails(it)
         })
+        viewPager.adapter = filmSliderAdapter
         viewPagerTransform()
 
         viewModel.genresProperties.observe(viewLifecycleOwner, object : Observer<GenresResponse> {
@@ -75,21 +72,21 @@ class FilmFragment(val category: String) : Fragment() {
             }
         })
 
+        viewModel.properties.observe(viewLifecycleOwner, Observer {
+            it.let {
+                filmSliderAdapter.submitList(it.films)
+            }
+        })
+
         viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
-            if (null != it) {
-                this.findNavController().navigate(FilmFragmentDirections.actionShowDetail(it))
+            if (it != null) {
+                this.requireParentFragment().findNavController().navigate(TabsFragmentDirections.actionShowDetail(it))
                 viewModel.displayPropertyDetailsComplete()
                 viewModel.navigateToSelectedProperty.value?.filmId
 
             }
         })
 
-        setHasOptionsMenu(true)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
     }
 
     private fun viewPagerTransform() {

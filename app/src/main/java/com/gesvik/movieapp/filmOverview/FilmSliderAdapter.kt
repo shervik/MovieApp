@@ -9,7 +9,9 @@ import com.gesvik.movieapp.databinding.FilmItemBinding
 import com.gesvik.movieapp.network.entities.FilmsItem
 
 class FilmSliderAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<FilmsItem, FilmSliderAdapter.FilmsItemViewHolder>(DiffCallback) {
+    ListAdapter<FilmsItem, FilmSliderAdapter.FilmsItemViewHolder>(
+        DiffCallback
+    ) {
 
     class FilmsItemViewHolder(private var binding: FilmItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -35,7 +37,9 @@ class FilmSliderAdapter(private val onClickListener: OnClickListener) :
             parent,
             false
         )
-        return FilmsItemViewHolder(itemBinding)
+        return FilmsItemViewHolder(
+            itemBinding
+        )
     }
 
     override fun onBindViewHolder(holder: FilmsItemViewHolder, position: Int) {
